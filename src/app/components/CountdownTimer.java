@@ -32,13 +32,16 @@ public class CountdownTimer {
     }
 
     private String calculateDiff(Date end) {
+        long diff = ChronoUnit.DAYS.between(LocalDate.now(), configureZone(end));
+
+        return Long.toString(diff);
+    }
+
+    private LocalDate configureZone(Date end) {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         Instant instant = end.toInstant();
         LocalDate endDate = instant.atZone(defaultZoneId).toLocalDate();
-
-        long diff = ChronoUnit.DAYS.between(LocalDate.now(), endDate);
-
-        return Long.toString(diff);
+        return endDate;
     }
 
 }
