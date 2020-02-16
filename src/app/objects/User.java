@@ -2,10 +2,12 @@ package app.objects;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import app.components.CountdownTimer;
 
-public class User {
+public class User implements IteratorCreator {
     private String userId;
     private HashMap<Integer, Event> events;
     private CountdownTimer timer;
@@ -19,6 +21,10 @@ public class User {
     public Calendar createCalendar(boolean isPublic) {
         Calendar calendar = new Calendar(isPublic, this);
         return calendar;
+    }
+
+    public Iterator createIterator() {
+        return events.entrySet().iterator();
     }
 
     public Event createEvent(ArrayList<String> userRes, Calendar originCalendar) {

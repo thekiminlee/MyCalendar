@@ -3,8 +3,10 @@ package app.objects;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.Map.Entry;
 
 public class MyCalendar {
     private static MyCalendar myCalendar; // singleton method
@@ -64,9 +66,10 @@ public class MyCalendar {
     public String displayEvents() {
         String result = "------------------------------------------\n";
         result += "Event list:\n";
-        HashMap<Integer, Event> events = currentUser.getEvents();
-        for (Map.Entry<Integer, Event> entry : events.entrySet()) {
-            result += "  " + entry.getKey() + " " + entry.getValue().getTitle() + " created by "
+        Iterator iter = currentUser.createIterator();
+        while (iter.hasNext()) {
+            Entry<Integer, Event> entry = (Entry<Integer, Event>) iter.next();
+            result += " " + entry.getKey() + " " + entry.getValue().getTitle() + " created by "
                     + entry.getValue().getCreator().getUserId() + "\n";
         }
         result += "------------------------------------------\n";
