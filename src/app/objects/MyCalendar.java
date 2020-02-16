@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class MyCalendar {
+    private static MyCalendar myCalendar; // singleton method
+
     private HashMap<String, User> userList;
     private HashMap<Integer, Calendar> calendarList;
     private TimeZone timeZone;
@@ -15,12 +17,19 @@ public class MyCalendar {
     private boolean loggedIn;
     private User currentUser;
 
-    public MyCalendar() {
+    private MyCalendar() {
         userList = new HashMap<>();
         calendarList = new HashMap<>();
         loggedIn = false;
         darkTheme = false;
         timeZone = TimeZone.getDefault();
+    }
+
+    public static MyCalendar getInstance() {
+        if (myCalendar == null) {
+            myCalendar = new MyCalendar();
+        }
+        return myCalendar;
     }
 
     public String displayCalendar() {
@@ -62,6 +71,10 @@ public class MyCalendar {
         }
         result += "------------------------------------------\n";
         return result;
+    }
+
+    public String displayCounter() {
+        return currentUser.displayTimer();
     }
 
     public boolean isLoggedIn() {
@@ -155,6 +168,10 @@ public class MyCalendar {
 
     public HashMap<Integer, Calendar> getCalendars() {
         return calendarList;
+    }
+
+    public Calendar getCalendar(int calendar_id) {
+        return calendarList.get(calendar_id);
     }
 
     public User getCurrentUser() {

@@ -20,7 +20,7 @@ public class App {
     private String userName;
 
     public App() {
-        myCalendar = new MyCalendar();
+        myCalendar = MyCalendar.getInstance();
         input = new Scanner(System.in);
     }
 
@@ -200,7 +200,7 @@ public class App {
             calendarNum = Integer.parseInt(input.next());
             ArrayList<String> userRes = eventPrompt();
             if (myCalendar.authenticateUser(calendarNum)) {
-                myCalendar.getCurrentUser().createEvent(userRes, myCalendar.getCalendars().get(calendarNum));
+                myCalendar.getCurrentUser().createEvent(userRes, myCalendar.getCalendar(calendarNum));
             }
             break;
         case "r":
@@ -234,7 +234,7 @@ public class App {
             String timerRes = input.next();
             switch (timerRes.toLowerCase()) {
             case "v":
-                System.out.println(myCalendar.getCurrentUser().getCountdownTimer().displayTimeRemaining());
+                System.out.println(myCalendar.displayCounter());
                 break;
             case "a":
                 System.out.print("      Event #: ");

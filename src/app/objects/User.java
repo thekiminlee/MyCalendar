@@ -94,6 +94,10 @@ public class User {
         return timer;
     }
 
+    public String displayTimer() {
+        return this.timer.displayTimeRemaining();
+    }
+
     public void addTimer(int eventID) {
         if (events.containsKey(eventID)) {
             timer.addTimer(events.get(eventID));
