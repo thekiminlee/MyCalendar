@@ -17,7 +17,7 @@ public class MyCalendar {
     private boolean loggedIn;
     private User currentUser;
 
-    public MyCalendar() {
+    private MyCalendar() {
         userList = new HashMap<>();
         calendarList = new HashMap<>();
         loggedIn = false;
@@ -25,12 +25,12 @@ public class MyCalendar {
         timeZone = TimeZone.getDefault();
     }
 
-    // public static MyCalendar getInstance() {
-    // if (myCalendar == null) {
-    // myCalendar = new MyCalendar();
-    // }
-    // return myCalendar;
-    // }
+    public static MyCalendar getInstance() {
+        if (myCalendar == null) {
+            myCalendar = new MyCalendar();
+        }
+        return myCalendar;
+    }
 
     public String displayCalendar() {
         String calendars = "----------Calendar List----------\n";

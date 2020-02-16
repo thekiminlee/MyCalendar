@@ -20,8 +20,7 @@ public class App {
     private String userName;
 
     public App() {
-        // myCalendar = MyCalendar.getInstance();
-        myCalendar = new MyCalendar();
+        myCalendar = MyCalendar.getInstance();
         input = new Scanner(System.in);
     }
 
